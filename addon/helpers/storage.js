@@ -130,6 +130,10 @@ function createStorage(context, key, modelKey, options) {
   assign(initialState, defaultState);
 
   if (StorageFactory.create) {
+    if (owner.factoryFor) {
+      return owner.factoryFor(storageFactory).create(initialState);
+    }
+
     return StorageFactory.create(initialState);
   }
 
